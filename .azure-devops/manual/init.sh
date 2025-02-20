@@ -25,7 +25,7 @@ az storage account blob-service-properties update --resource-group $RESOURCE_GRO
 az storage container create --name $CONTAINER_NAME --account-name $TERRAFORM_BACKEND_STORAGE_ACCOUNT --resource-group $RESOURCE_GROUP_NAME --auth-mode login
 
 # Fetch the Storage Account ID for Role Assignment
-STORAGE_ACCOUNT_ID=$(az storage account show --name satfstateecpeus01 --resource-group azure-devops-user-rg --query id --output tsv)
+STORAGE_ACCOUNT_ID=$(az storage account show --name $TERRAFORM_BACKEND_STORAGE_ACCOUNT --resource-group $RESOURCE_GROUP_NAME --query id --output tsv)
 
 # Assign Storage Blob Data Contributor role to the Managed Identity allowing it to makeblob  related changes in the Storage Container
 az role assignment create --assignee $CLIENT_ID --role "Storage Blob Data Contributor" --scope $STORAGE_ACCOUNT_ID
